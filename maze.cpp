@@ -27,6 +27,22 @@ void maze:: fillmaze(){
         throw er;
     }
 }
+char maze:: getcell(int i, int j){
+    return m[i][j];
+}
+int maze:: getrows(){
+    return m.size();
+}
+int maze:: getcol(){
+    return m[0].size();
+}
+void maze:: line_to_maze_row(string line, int n){
+    vector<char> l;
+    for(int i = 0; i<n; i++){
+        l.push_back(line[i]);
+    }
+    m.push_back(l);
+}
 bool checker:: two_chars_line(string line, lines_error& er){
     n++;
     bool r = true;
@@ -38,11 +54,4 @@ bool checker:: two_chars_line(string line, lines_error& er){
         }
     }
     return r;
-}
-void maze:: line_to_maze_row(string line, int n){
-    vector<char> l;
-    for(int i = 0; i<n; i++){
-        l.push_back(line[i]);
-    }
-    m.push_back(l);
 }
