@@ -7,4 +7,6 @@ public:
     graph(maze&);
     Node* findnode(int, int);
     vector<Node*> Dijkstra(int, int, int, int);
+    vector<Node*> Astar(int, int, int, int);
 };
+int heuristic(Node*, Node*);

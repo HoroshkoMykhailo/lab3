@@ -41,3 +41,31 @@ bool Queue::isEmpty() {
 bool Queue::isFull() {
     return (size == capacity);
 }
+priorityQueue:: priorityQueue(){}
+
+bool priorityQueue::isEmpty(){
+        return ar.empty();
+    }
+
+void priorityQueue:: push(Node* item) {
+    for (int i = 0; i < ar.size(); i++) {
+        if (item->getp() < ar[i]->getp()) {
+            ar.insert(ar.begin() + i, item);
+            return;
+        }
+    }
+    ar.push_back(item);
+}
+Node* priorityQueue:: pop() {
+    Node* small = ar.front();
+    ar.erase(ar.begin());
+    return small;
+}
+bool priorityQueue:: isin(Node* n){
+    for(int i = 0; i < ar.size(); i++){
+        if(ar[i] == n){
+            return true;
+        }
+    }
+    return false;
+}

@@ -39,7 +39,9 @@ int maze:: getcol(){
 void maze:: line_to_maze_row(string line, int n){
     vector<char> l;
     for(int i = 0; i<n; i++){
-        l.push_back(line[i]);
+        if(i%2 == 0){
+            l.push_back(line[i]);
+        }
     }
     m.push_back(l);
 }
@@ -72,7 +74,7 @@ bool checker:: two_chars_line(string line, lines_error& er){
     bool r = true;
     for(int i = 0; i < line.size(); i++){
         if(line[i] != ' ' && line[i] != 'X'){
-            string s = "There is a char which is not # or ' ' In line number " + to_string(n + 1) + " in cell number " + to_string(i + 1);
+            string s = "There is a char which is not X or ' ' In line number " + to_string(n + 1) + " in cell number " + to_string(i + 1);
             er.addMessage(s);
             r = false;
         }

@@ -6,9 +6,10 @@ int main(int argc, char* argv[]){
         name.append(argv[1]);
         maze puzzle(name);
         puzzle.fillmaze();
+        puzzle.printmaze();
         graph gr(puzzle);
         vector<int> points = getpoints();
-        puzzle.changemaze(gr.Dijkstra(points[0] - 1, points[1] - 1, points[2] - 1, points[3] - 1));
+        puzzle.changemaze(gr.Astar(points[0] - 1, points[1] - 1, points[2] - 1, points[3] - 1));
         puzzle.printmaze();
     }
     catch(const invalid_argument& e){
