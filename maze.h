@@ -1,6 +1,8 @@
+#pragma once
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include "Node.h"
+#include "except_classes.h"
 using namespace std;
 class maze{
     vector<vector<char>> m;
@@ -10,6 +12,8 @@ public:
     void fillmaze();
     void line_to_maze_row(string, int);
     char getcell(int, int);
+    void changemaze(vector<Node*>);
+    void printmaze();
     int getrows();
     int getcol();
 };

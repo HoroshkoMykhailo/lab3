@@ -1,18 +1,11 @@
 #include "graph.h"
-Node:: Node(int i, int j):x(i), y(j){}
-void Node:: add_adj(Node* neighbor){
-    adj.push_back(neighbor);
-}
-vector<Node*>&  Node:: get_adj(){
-    return adj;
-}
 graph:: graph(maze& m){
     int rows = m.getrows();
     int cols = m.getcol();
-    g.resize(rows, std::vector<Node*>(cols, nullptr));
+    g.resize(rows, vector<Node*>(cols, nullptr));
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            if (m.getcell(i, j) != '#') {
+            if (m.getcell(i, j) != 'X') {
                 g[i][j] = new Node(i, j);
             }
         }
@@ -36,4 +29,42 @@ graph:: graph(maze& m){
             }
         }
     }
+}
+Node* graph:: findnode(int x1, int y1){
+    if(g[x1][y1] == nullptr){
+        throw invalid_argument("The given point is incorrect");
+    }
+    return g[x1][y1];
+}
+vector<Node*> graph:: Dijkstra(int x1, int y1, int x2, int y2){
+    Node* start = findnode(x1, y1), *end = findnode(x2, y2);
+    Queue q(g.size()*g[0].size());
+    vector<Node*> prev(g.size() * g[0].size(), nullptr);
+    q.push(start);
+    while (!q.isEmpty()) {
+        Node* current = q.pop();
+        if (current == end) {
+            break;
+        }
+        vector<Node*>& adjac = current->get_adj();
+        for (int i = 0; i < adjac.size(); i++) {
+            Node* neighbor = adjac[i];
+            int ind = neighbor->getX() * g[0].size() + neighbor->getY();
+            if (prev[ind] == nullptr) {
+                prev[ind] = current;
+                q.push(neighbor);
+            }
+        }
+    }
+    if (prev[end->getX() * g[0].size() + end->getY()] == nullptr) {
+        return std::vector<Node*>();
+    }
+    std::vector<Node*> path;
+    Node* current = end;
+    while(current != start){
+        path.insert(path.begin(), current);
+        current = prev[current->getX() * g[0].size() + current->getY()];
+    }
+    path.insert(path.begin(), start);
+    return path;
 }

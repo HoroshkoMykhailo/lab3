@@ -1,14 +1,10 @@
+#pragma once
 #include "maze.h"
-class Node{
-    int x, y;
-    vector<Node*> adj;
-public:
-    Node(int, int);
-    void add_adj(Node*);
-    vector<Node*>& get_adj();
-};
+#include "queue.h"
 class graph{
     vector<vector<Node*>> g;
 public:
     graph(maze&);
+    Node* findnode(int, int);
+    vector<Node*> Dijkstra(int, int, int, int);
 };

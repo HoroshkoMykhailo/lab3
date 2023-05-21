@@ -1,3 +1,4 @@
+#pragma once
 #include "except_classes.h"
 #include "graph.h"
 class Queue
@@ -12,7 +13,7 @@ public:
     Queue(int);
     ~Queue();                
     void push(Node*);
-    Node* peek();
+    Node* pop();
     int getsize();
     bool isEmpty();
     bool isFull();
