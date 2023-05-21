@@ -32,7 +32,7 @@ graph:: graph(maze& m){
 }
 Node* graph:: findnode(int x1, int y1){
     if(g[x1][y1] == nullptr || (x1 >g.size() || y1 > g[0].size())){
-        throw invalid_argument("The given point is incorrect");
+        throw invalid_argument("The given point is incorrect\n");
     }
     return g[x1][y1];
 }
