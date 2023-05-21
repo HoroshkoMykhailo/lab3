@@ -1,4 +1,4 @@
-#include <vector>
+#include "graph.h"
 #include <iostream>
-using namespace std;
-vector<int> getpoints();
+vector<int> getpoints(graph&);
+bool c_alg();
