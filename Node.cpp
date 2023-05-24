@@ -2,6 +2,11 @@
 Node:: Node(int i, int j):x(i), y(j){
     priority = 0;
 }
+Node:: ~Node(){
+    for (int i = 0; i < adj.size(); i++){
+        delete adj[i];
+    }
+}
 void Node:: setp(int p){
     priority = p;
 }

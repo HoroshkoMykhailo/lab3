@@ -7,6 +7,7 @@ class Node{
     int priority;
 public:
     Node(int, int);
+    ~Node();
     void setp(int);
     int getp();
     int getX();
