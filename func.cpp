@@ -1,5 +1,4 @@
 #include "func.h"
-#include <conio.h>
 vector<int> getpoints(graph& gr){
     vector<int> points;
     char ch;
