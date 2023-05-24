@@ -68,6 +68,7 @@ bool c_alg(){
     int c;
     cout << "Which algorithm do you want to use(Esc for Dijkstra, any key for A*): ";
     c = (int)_getch();
+    cout << endl;
     bool r = (c == 27);
     return r;
 }
