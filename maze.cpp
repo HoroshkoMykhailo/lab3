@@ -69,6 +69,9 @@ void maze:: printmaze(){
         cout << endl;
     }
 }
+checker:: checker(){
+    n = 0;
+}
 bool checker:: two_chars_line(string line, lines_error& er){
     n++;
     bool r = true;

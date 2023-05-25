@@ -18,7 +18,8 @@ public:
     int getcol();
 };
 class checker{
-    int n = 0;
+    int n;
 public:
+    checker();
     bool two_chars_line(string, lines_error&);
 };
