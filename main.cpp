@@ -1,7 +1,6 @@
 #include "graph.h"
 #include "func.h"
 int main(int argc, char* argv[]){
-    Node* test;
     try{
         string name = "C:\\Visual studio\\codes\\3\\";
         name.append(argv[1]);
@@ -11,7 +10,6 @@ int main(int argc, char* argv[]){
         puzzle.printmaze();
         graph gr(puzzle);
         input i;
-        test = gr.findnode(1, 1);
         vector<int> points = i.getpoints(gr);
         if(i.choose()){
             puzzle.changemaze(gr.Dijkstra(points[0] - 1, points[1] - 1, points[2] - 1, points[3] - 1));
