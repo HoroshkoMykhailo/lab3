@@ -30,6 +30,13 @@ graph:: graph(maze& m){
         }
     }
 }
+graph:: ~graph(){
+    for(int i =0; i < g.size(); i++){
+        for(int j = 0; j < g[0].size(); j++){
+            delete g[i][j];
+        }
+    }
+}
 Node* graph:: findnode(int x1, int y1){
     if(g[x1][y1] == nullptr || (x1 >g.size() || y1 > g[0].size())){
         throw invalid_argument("The given point is incorrect\n");

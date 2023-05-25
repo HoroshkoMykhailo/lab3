@@ -4,7 +4,7 @@ Node:: Node(int i, int j):x(i), y(j){
 }
 Node:: ~Node(){
     for (int i = 0; i < adj.size(); i++){
-        delete adj[i];
+        if(adj[i] != nullptr)  adj[i] = nullptr;
     }
 }
 void Node:: setp(int p){

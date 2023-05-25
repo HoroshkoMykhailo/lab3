@@ -1,5 +1,15 @@
 #include "func.h"
-vector<int> getpoints(graph& gr){
+int input:: getnum(string coor, string s){
+    int c;
+    char ch;
+    cout<< "Enter the " + coor + " coordinate of the " + s + " point: ";
+    while (!(cin >> c) || !(cin.get(ch)) || ch != '\n' || c <= 0 || c >= 32000) {
+        cin.clear();
+        cout << "Incorrect value. Enter the " + coor + " coordinate of the " + s + " point: ";
+    }
+    return c;
+}
+vector<int> input:: getpoints(graph& gr){
     vector<int> points;
     char ch;
     int c;
@@ -8,52 +18,30 @@ vector<int> getpoints(graph& gr){
         er = false;
         do{
             er = false;
-            cout<< "Enter the x coordinate of the start point: ";
-            while (!(cin >> c) || !(cin.get(ch)) || ch != '\n' || c <= 0 || c >= 32000) {
-                cin.clear();
-                cout << "Incorrect value. Enter the x coordinate of the start point: ";
-            }
-            points.push_back(c);
-            cout << "Enter the y coordinate of the start point: ";
-            while (!(cin >> c) || !(cin.get(ch)) || ch != '\n' || c <= 0 || c >= 32000) {
-                cin.clear();
-                cout << "Incorrect value. Enter the y coordinate of the start point: ";
-            }
-            points.push_back(c);
+            //DRY
+            points.push_back(getnum("x", "start"));
+            points.push_back(getnum("y", "start"));
             try{
                 gr.findnode(points[0] - 1, points[1] - 1);
             }
             catch(const invalid_argument& e){
                 cout<< e.what();
                 er = true;
-            }
-            if(er){
-                points.erase (points.end() - 2, points.end());
+                points.erase(points.end() - 2, points.end());
             }
         }while(er);
         do{
             er = false;
-            cout<< "Enter the x coordinate of the end point: ";
-            while (!(cin >> c) || !(cin.get(ch)) || ch != '\n' || c <= 0 || c >= 32000) {
-                cin.clear();
-                cout << "Incorrect value. Enter the x coordinate of the end point: ";
-            }
-            points.push_back(c);
-            cout << "Enter the y coordinate of the end point: ";
-            while (!(cin >> c) || !(cin.get(ch)) || ch != '\n' || c <= 0 || c >= 32000) {
-                cin.clear();
-                cout << "Incorrect value. Enter the y coordinate of the end point: ";
-            }
-            points.push_back(c);
+            points.push_back(getnum("x", "end"));
+            points.push_back(getnum("y", "end"));
             try{
-                gr.findnode(points[0] - 1, points[1] - 1);
+                gr.findnode(points[2] - 1, points[3] - 1);
             }
             catch(const invalid_argument& e){
+                cout<< points[3] << " "<< points[2];
                 cout<< e.what();
                 er = true;
-            }
-            if(er){
-                points.erase (points.end() - 2, points.end());
+                points.erase(points.end() - 2, points.end());
             }
         }while(er);
         if(points[0] == points[2] && points[1] == points[3]){
@@ -64,7 +52,7 @@ vector<int> getpoints(graph& gr){
     }while(er);
     return points;              
 }
-bool c_alg(){
+bool input:: choose(){
     int c;
     cout << "Which algorithm do you want to use(Esc for Dijkstra, any key for A*): ";
     c = (int)_getch();

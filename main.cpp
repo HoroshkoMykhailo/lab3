@@ -1,6 +1,7 @@
 #include "graph.h"
 #include "func.h"
 int main(int argc, char* argv[]){
+    Node* test;
     try{
         string name = "C:\\Visual studio\\codes\\3\\";
         name.append(argv[1]);
@@ -9,11 +10,14 @@ int main(int argc, char* argv[]){
         cout << "Given maze: "<<endl;
         puzzle.printmaze();
         graph gr(puzzle);
-        vector<int> points = getpoints(gr);
-        if(c_alg()){
+        input i;
+        test = gr.findnode(1, 1);
+        vector<int> points = i.getpoints(gr);
+        if(i.choose()){
             puzzle.changemaze(gr.Dijkstra(points[0] - 1, points[1] - 1, points[2] - 1, points[3] - 1));
         }
         else puzzle.changemaze(gr.Astar(points[0] - 1, points[1] - 1, points[2] - 1, points[3] - 1));
+
         cout << "The way in the maze: "<< endl;
         puzzle.printmaze();
     }

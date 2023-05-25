@@ -5,6 +5,7 @@ class graph{
     vector<vector<Node*>> g;
 public:
     graph(maze&);
+    ~graph();
     Node* findnode(int, int);
     vector<Node*> Dijkstra(int, int, int, int);
     vector<Node*> Astar(int, int, int, int);
